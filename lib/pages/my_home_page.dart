@@ -3,15 +3,15 @@ import 'package:flutter_application_1/pages/Modificar_contacto.dart';
 import 'package:flutter_application_1/pages/registrar_contacto.dart';
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
 
-class MyHomepages extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   final String _title;
-  MyHomepages(this._title);
+  MyHomePage(this._title);
 
   @override
-  State<StatefulWidget> createState() => _MyHomePages();
+  State<StatefulWidget> createState() => _MyHomePage();
 }
 
-class _MyHomePages extends State<MyHomepages> {
+class _MyHomePage extends State<MyHomePage> {
   List<Client> clients = [
     Client(name: "rony", apellido: "puche", numero: "300111" ,profesion: "programador" ,fechaNacimiento: "17-04-2022" ,foto: "foto1"),
     Client(name: "moly", apellido: "uche", numero: "300111" ,profesion: "programador" ,fechaNacimiento: "17-04-2022" ,foto: "foto1"),
@@ -51,7 +51,7 @@ class _MyHomePages extends State<MyHomepages> {
             },
             title: Text(clients[index].name + " " + clients[index].apellido +" ("
             +clients[index].profesion+" )"),
-            subtitle: Text(clients[index].numero + " " +clients[index].fechaNacimiento+" "+DateTime.now()),
+            subtitle: Text(clients[index].numero + " " +clients[index].fechaNacimiento),
             
             leading: CircleAvatar(
               
