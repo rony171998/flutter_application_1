@@ -1,25 +1,27 @@
 {
-    // Use IntelliSense para saber los atributos posibles.
-    // Mantenga el puntero para ver las descripciones de los existentes atributos.
-    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
-            "name": "flutter_application_1",
+            "name": "Flutter",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart"
+        },
+        
+
+        {
+            "name": "Flutter(Pixel 3 API 28)",
             "request": "launch",
             "type": "dart"
         },
+    
         {
-            "name": "flutter_application_1 (profile mode)",
+            "name": "Flutter (Edge)",
+            "program": "lib/main.dart",
+            "deviceId": "edge",
             "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "flutter_application_1 (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "type": "dart"
         }
     ]
 }

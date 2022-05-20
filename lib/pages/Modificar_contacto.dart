@@ -10,7 +10,7 @@ class ModificarContacto extends StatefulWidget {
 }
 
 class _ModificarContacto extends State<ModificarContacto> {
-   late TextEditingController controllerName;
+  late TextEditingController controllerName;
   late TextEditingController controllerApellido;
   late TextEditingController controllerNumero;
   late TextEditingController controllerProfesion;
@@ -23,9 +23,9 @@ class _ModificarContacto extends State<ModificarContacto> {
     controllerName = new TextEditingController(text: c.name);
     controllerApellido = new TextEditingController(text: c.apellido);
     controllerNumero = new TextEditingController(text: c.numero);
-    controllerName = new TextEditingController(text: c.profesion);
-    controllerApellido = new TextEditingController(text: c.fechaNacimiento);
-    controllerNumero = new TextEditingController(text: c.foto);
+    controllerProfesion = new TextEditingController(text: c.profesion);
+    controllerFechaNacimiento = new TextEditingController(text: c.fechaNacimiento);
+    controllerFoto = new TextEditingController(text: c.foto);
 
     super.initState();
   }

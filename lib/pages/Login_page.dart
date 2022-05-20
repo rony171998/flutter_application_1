@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/my_home_page.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = "Loginpage";
@@ -7,6 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -14,11 +16,12 @@ class _LoginPageState extends State<LoginPage> {
         body: Center(
           child: Column(
             children: [
-              Image.asset('web/icons/login.png',
+              Image.asset(
+                "web/icons/Icon-512.png",
                 height: 300.0,
               ),
               SizedBox(
-                height: 15.0,
+                height: 25.0,
               ),
               _userTextField(),
               SizedBox(
@@ -42,6 +45,7 @@ Widget _userTextField() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 40.0),
       child: TextField(
+        
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           icon: Icon(Icons.person),
@@ -72,21 +76,40 @@ Widget _passwordTextField() {
 }
 
 Widget _bottonLogin() {
+  TextEditingController controllerName= new TextEditingController();
+  TextEditingController controllerNumero= new TextEditingController();
+  final Client _client;
+
+  
   return StreamBuilder(builder: (BuildContext context, AsyncSnapshot snapshot) {
-    return RaisedButton(
+    return ElevatedButton(
+      
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
           child: Text("Iniciar Sesion"),
+          
         ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        elevation: 10.0,
-        color: Colors.amber,
         onPressed: () {
-          //Navigator.push(context,
-          //MaterialPageRoute
-          //(builder: (_)=> MyHomePages("Mis Contactos"))
-          //);
-         
+          String name =controllerName.text;
+          
+          String numero=controllerNumero.text;
+          
+          if (name.isNotEmpty && numero.isNotEmpty) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => MyHomePage("Mis Contactos")));
+          } else {
+            showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                      title: Text("Error"),
+                      content: Text("Uno de los campos esta Vacio"),
+                    ));
+          }
         });
   });
 }
+
+
+  
+
+

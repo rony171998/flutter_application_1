@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/my_home_page.dart';
+
 import 'package:flutter_application_1/pages/Login_page.dart';
 
 
@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: MyHomePage("Mis Contactos"), 
-      /*initialRoute: LoginPage.id,
+      //home: MyHomePage("Mis Contactos"), 
+      initialRoute: LoginPage.id,
       routes: {
         LoginPage.id :(context)=> LoginPage(),
-      },*/
+      },
     );
   }
 }
