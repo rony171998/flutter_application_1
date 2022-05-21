@@ -15,7 +15,7 @@ class _MyHomePage extends State<MyHomePage> {
   List<Client> clients = [
     Client(name: "rony", apellido: "puche", numero: "300111" ,profesion: "programador" ,fechaNacimiento: "17-04-2022" ,foto: "foto1"),
     Client(name: "moly", apellido: "uche", numero: "300111" ,profesion: "programador" ,fechaNacimiento: "17-04-2022" ,foto: "foto1"),
-    Client(name: "alex", apellido: "soto", numero: "300111" ,profesion: "programador" ,fechaNacimiento: "17-04-2022" ,foto: "foto1")
+    Client(name: "alex", apellido: "soto", numero: "300111" ,profesion: "profesor" ,fechaNacimiento: "17-04-2022" ,foto: "foto1")
   ];
 
   @override
@@ -59,7 +59,7 @@ class _MyHomePage extends State<MyHomePage> {
             ),
             trailing: Icon(
               Icons.account_box_rounded,
-              color: Colors.pink,
+              color: Colors.amber,
             ),
             
           );

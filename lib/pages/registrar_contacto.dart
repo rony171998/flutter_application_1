@@ -12,6 +12,7 @@ class _RegistrarContacto extends State<RegistrarContacto> {
   late TextEditingController controllerApellido;
   late TextEditingController controllerNumero;
   late TextEditingController controllerProfesion;
+  late TextEditingValue controllerProfesion2;
   late TextEditingController controllerFechaNacimiento;
   late TextEditingController controllerFoto;
   
@@ -22,6 +23,7 @@ class _RegistrarContacto extends State<RegistrarContacto> {
     controllerApellido = new TextEditingController();
     controllerNumero = new TextEditingController();
     controllerProfesion = new TextEditingController();
+    controllerProfesion2 = new TextEditingValue();
     controllerFechaNacimiento = new TextEditingController();
     controllerFoto = new TextEditingController();
     super.initState();
@@ -38,6 +40,7 @@ class _RegistrarContacto extends State<RegistrarContacto> {
         TextBox(controllerApellido, "Apellido"),
         TextBox(controllerNumero, "telefono"),
         TextBox(controllerProfesion, "profesion"),
+        ComboBox(controllerProfesion2, "Seleccionar"),
         TextBox(controllerFechaNacimiento, "fecha de nacimiento"),
         TextBox(controllerFoto, "Foto"),
         ElevatedButton(
