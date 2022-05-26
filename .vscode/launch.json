@@ -3,14 +3,6 @@
     "configurations": [
         
         {
-            "name": "Flutter",
-            "type": "dart",
-            "request": "launch",
-            "program": "lib/main.dart"
-        },
-        
-
-        {
             "name": "Flutter(Pixel 3 API 28)",
             "request": "launch",
             "type": "dart"

@@ -64,6 +64,7 @@ class TextBoxPass extends StatelessWidget {
         controller: this._controller,
         decoration: InputDecoration(
             filled: true,
+            hintText: 'Password',
             labelText: this._label,
             suffix: GestureDetector(
               child: Icon(
