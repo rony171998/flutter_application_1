@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login App', 
       initialRoute: Login.id,
+      theme: ThemeData(primaryColor: Colors.blue[900]),
       routes: {
         Login.id :(context)=> Login(),
       },

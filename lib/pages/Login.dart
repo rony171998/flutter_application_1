@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_application_1/pages/my_home_page.dart';
 import 'package:flutter_application_1/pages/text_box.dart';
 
@@ -72,7 +73,8 @@ class _Login extends State<Login> {
                         MaterialPageRoute(
                             builder: (_) =>
                                 MyHomePage("Usuarios", clients[i].name)));
-                  }else if (i>2) {
+                                
+                  } else if (i > 2) {
                     showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
@@ -81,7 +83,6 @@ class _Login extends State<Login> {
                             ));
                   }
                 }
-
               } else {
                 showDialog(
                     context: context,

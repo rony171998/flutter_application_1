@@ -1,18 +1,14 @@
-
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Modificar_contacto.dart';
 import 'package:flutter_application_1/pages/registrar_contacto.dart';
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
-
-
-
-
+import 'package:flutter_application_1/pages/lista.dart';
 
 class MyHomePage extends StatefulWidget {
   final String _title;
   final String _client;
-  MyHomePage(this._title,this._client);
+  MyHomePage(this._title, this._client);
 
   @override
   State<StatefulWidget> createState() => _MyHomePage();
@@ -26,29 +22,33 @@ class _MyHomePage extends State<MyHomePage> {
         numero: "1111",
         profesion: "programador",
         fechaNacimiento: "2001-04-17",
-        foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png"),
+        foto:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png"),
     Client(
         name: "moly",
         apellido: "uche",
         numero: "2222",
         profesion: "programador",
         fechaNacimiento: "2001-04-17",
-        foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png"),
+        foto:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png"),
     Client(
         name: "alex",
         apellido: "soto",
         numero: "3333",
         profesion: "profesor",
         fechaNacimiento: "2001-04-17",
-        foto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png")
+        foto:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1200px-User_icon_2.svg.png")
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._title+"                                                                             "+widget._client),
-        
+        title: Text(widget._title +
+            "                                                                             " +
+            widget._client),
       ),
       body: ListView.builder(
         itemCount: clients.length,
@@ -75,39 +75,79 @@ class _MyHomePage extends State<MyHomePage> {
             onLongPress: () {
               removeClient(context, clients[index]);
             },
-            title: Text(clients[index].name +
-                " " +
-                clients[index].apellido),
-            subtitle: Text(clients[index].profesion ),
+            title: Text(clients[index].name + " " + clients[index].apellido),
+            subtitle: Text(clients[index].profesion),
             leading: CircleAvatar(
               child: Image.network(
                 clients[index].foto,
               ),
             ),
             trailing: Text("Edad " +
-                ageClient(context, clients[index].fechaNacimiento)
-                +"años"
-                ),
+                ageClient(context, clients[index].fechaNacimiento) +
+                "años"),
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => RegistrarContacto()))
-              .then((newContact) {
-            if (newContact != null) {
-              setState(() {
-                clients.add(newContact);
-                mensajeResponsive(
-                    context, newContact.name + " se ha registrado");
-              });
-            }
-          });
-        },
-        tooltip: "Agregar Contacto",
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: Column(children: <Widget>[
+        SizedBox(
+          height: 695.0, //Esto es solo para dar cierto margen entre los FAB
+        ),
+        FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.blender_outlined),
+          tooltip: 'notificaciones',
+          elevation: 50.0,
+          backgroundColor: Colors.blue[900],
+        ),
+        SizedBox(
+          height: 15.0, //Esto es solo para dar cierto margen entre los FAB
+        ),
+        FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add_alarm),
+          tooltip: 'Product',
+          elevation: 50.0,
+          backgroundColor: Colors.blue[900],
+        ),
+        SizedBox(
+          height: 15.0, //Esto es solo para dar cierto margen entre los FAB
+        ),
+        FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        ListaMensajeros(title: 'Proyecto Mensajeros')));
+          },
+          child: Icon(Icons.list_alt),
+          tooltip: 'lista',
+          elevation: 50.0,
+          backgroundColor: Colors.blue[900],
+        ),
+        SizedBox(
+          height: 15.0, //Esto es solo para dar cierto margen entre los FAB
+        ),
+        FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => RegistrarContacto()))
+                .then((newContact) {
+              if (newContact != null) {
+                setState(() {
+                  clients.add(newContact);
+                  mensajeResponsive(
+                      context, newContact.name + " se ha registrado");
+                });
+              }
+            });
+          },
+          child: Icon(Icons.add),
+          tooltip: 'Agregar usuario',
+          elevation: 50.0,
+          backgroundColor: Colors.blue[900],
+        ),
+      ]),
     );
   }
 
@@ -144,20 +184,21 @@ class _MyHomePage extends State<MyHomePage> {
 
   ageClient(contex, var dateuser) {
     var datenow = DateTime.now().toString().substring(0, 10);
-    var age =int.parse(datenow.substring(0, 4))-int.parse(dateuser.substring(0, 4));
+    var age = int.parse(datenow.substring(0, 4)) -
+        int.parse(dateuser.substring(0, 4));
     log("message $datenow ");
-    if (int.parse(datenow.substring(5, 7)) < int.parse(dateuser.substring(5, 7))) {
+    if (int.parse(datenow.substring(5, 7)) <
+        int.parse(dateuser.substring(5, 7))) {
       age = age - 1;
-    } else if (int.parse(datenow.substring(5, 7)) == int.parse(dateuser.substring(5, 7))) {
+    } else if (int.parse(datenow.substring(5, 7)) ==
+        int.parse(dateuser.substring(5, 7))) {
       if (int.parse(datenow.substring(9)) < int.parse(dateuser.substring(9))) {
         age = age - 1;
       }
     }
     return age.toString();
   }
-  
 }
-
 
 class Client {
   var name;

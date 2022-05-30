@@ -1,57 +1,125 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+Future<List<Mensajero>> listarPost(http.Client client) async {
+  //final response =
+  //    await client.get('https://desarolloweb2021a.000webhostapp.com/API/listarnotas.php');
+  //var id = "2";
+  final response = await http.get(Uri.parse(
+      'https://desarolloweb2021a.000webhostapp.com/proyectomensajerosapi/listar.php'));
 
-class HttpApi extends StatelessWidget {
-  final Future<Post> post;
-
-  HttpApi({Key key, this.post}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
-    );
-    
-  }
-  Future<Post> fetchPost() async {
-  final response =
-      await http.get('https://jsonplaceholder.typicode.com/posts/1');
-
-  if (response.statusCode == 200) {
-    // Si el servidor devuelve una repuesta OK, parseamos el JSON
-    return Post.fromJson(json.decode(response.body));
-  } else {
-    // Si esta respuesta no fue OK, lanza un error.
-    throw Exception('Failed to load post');
-  }
+  // Usa la función compute para ejecutar parsePhotos en un isolate separado
+  return compute(pasaraListas, response.body);
 }
 
+// Una función que convierte el body de la respuesta en un List<Photo>
+List<Mensajero> pasaraListas(String responseBody) {
+  final pasar = json.decode(responseBody).cast<Map<String, dynamic>>();
+
+  return pasar.map<Mensajero>((json) => Mensajero.fromJson(json)).toList();
 }
-class Post {
-  final int userId;
-  final int id;
-  final String title;
-  final String body;
 
-  Post({this.userId, this.id, this.title, this.body});
+void adicionarMensajero(
+    String nombre,
+    String foto,
+    String placa,
+    String telefono,
+    String whatsapp,
+    String moto,
+    String soat,
+    String tecno,
+    String activo) async {
+  var url = Uri.parse(
+      "https://desarolloweb2021a.000webhostapp.com/proyectomensajerosapi/adicionar.php");
 
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
-      userId: json['userId'],
+  await http.post(url, body: {
+    'nombre': nombre,
+    'foto': foto,
+    'placa': placa,
+    'telefono': telefono,
+    'whatsapp': whatsapp,
+    'moto': moto,
+    'soat': soat,
+    'tecno': tecno,
+    'activo': activo,
+  });
+}
+
+void editarMensajero(
+    String id,
+    String nombre,
+    String foto,
+    String placa,
+    String telefono,
+    String whatsapp,
+    String moto,
+    String soat,
+    String tecno,
+    String activo) async {
+  var url = Uri.parse(
+      "https://desarolloweb2021a.000webhostapp.com/proyectomensajerosapi/modificar.php");
+
+  await http.post(url, body: {
+    'id': id,
+    'nombre': nombre,
+    'foto': foto,
+    'placa': placa,
+    'telefono': telefono,
+    'whatsapp': whatsapp,
+    'moto': moto,
+    'soat': soat,
+    'tecno': tecno,
+    'activo': activo
+  });
+}
+
+void eliminarMensajero(id) async {
+  var url = Uri.parse(
+      "https://desarolloweb2021a.000webhostapp.com/proyectomensajerosapi/eliminar.php");
+
+  await http.post(url, body: {
+    'ideliminar': id,
+  });
+}
+
+class Mensajero {
+  final String id;
+  final String nombre;
+  final String foto;
+  final String placa;
+  final String telefono;
+  final String whatsapp;
+  final String moto;
+  final String soat;
+  final String tecno;
+  final String activo;
+
+  Mensajero({
+     required this.id,
+     required this.nombre,
+    required this.foto,
+    required this.placa,
+    required this.telefono,
+    required this.whatsapp,
+    required this.moto,
+    required this.soat,
+    required this.tecno,
+    required this.activo,
+  });
+
+  factory Mensajero.fromJson(Map<String, dynamic> json) {
+    return Mensajero(
       id: json['id'],
-      title: json['title'],
-      body: json['body'],
+      nombre: json['nombre'],
+      foto: json['foto'],
+      placa: json['placa'],
+      telefono: json['telefono'],
+      whatsapp: json['whatsapp'],
+      moto: json['moto'],
+      soat: json['soat'],
+      tecno: json['tecno'],
+      activo: json['activo'],
     );
   }
 }
