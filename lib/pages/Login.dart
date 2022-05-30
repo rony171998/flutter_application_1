@@ -72,7 +72,7 @@ class _Login extends State<Login> {
                         MaterialPageRoute(
                             builder: (_) =>
                                 MyHomePage("Usuarios", clients[i].name)));
-                  }else if (i==3) {
+                  }else if (i>2) {
                     showDialog(
                         context: context,
                         builder: (_) => AlertDialog(

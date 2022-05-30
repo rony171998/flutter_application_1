@@ -40,7 +40,7 @@ class _RegistrarContacto extends State<RegistrarContacto> {
         TextBox(controllerApellido, "Apellido"),
         TextBox(controllerNumero, "telefono"),
         TextBox(controllerProfesion, "profesion"),
-        ComboBox(controllerProfesion2, "Seleccionar"),
+        //ComboBox(controllerProfesion2, "Seleccionar"),
         TextBox(controllerFechaNacimiento, "fecha de nacimiento"),
         TextBox(controllerFoto, "Foto"),
         ElevatedButton(

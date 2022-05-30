@@ -1,9 +1,11 @@
-import 'dart:html';
+
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Modificar_contacto.dart';
 import 'package:flutter_application_1/pages/registrar_contacto.dart';
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
+
+
 
 
 
@@ -153,7 +155,9 @@ class _MyHomePage extends State<MyHomePage> {
     }
     return age.toString();
   }
+  
 }
+
 
 class Client {
   var name;
