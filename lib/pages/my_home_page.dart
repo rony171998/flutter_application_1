@@ -90,7 +90,7 @@ class _MyHomePage extends State<MyHomePage> {
         },
       ),
       floatingActionButton: Column(children: <Widget>[
-        SizedBox( height: 595 ),
+        SizedBox( height: 295 ),
         FloatingActionButton(
           onPressed: () {},
           child: Icon(Icons.handyman_rounded),
