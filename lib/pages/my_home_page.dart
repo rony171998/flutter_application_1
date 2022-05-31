@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Modificar_contacto.dart';
 import 'package:flutter_application_1/pages/registrar_contacto.dart';
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
+import 'package:flutter_application_1/pages/listaUser.dart';
 import 'package:flutter_application_1/pages/lista.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -89,29 +90,29 @@ class _MyHomePage extends State<MyHomePage> {
         },
       ),
       floatingActionButton: Column(children: <Widget>[
-        SizedBox(
-          height: 695.0, //Esto es solo para dar cierto margen entre los FAB
-        ),
+        SizedBox( height: 595 ),
         FloatingActionButton(
           onPressed: () {},
-          child: Icon(Icons.blender_outlined),
-          tooltip: 'notificaciones',
+          child: Icon(Icons.handyman_rounded),
+          tooltip: 'Productos',
           elevation: 50.0,
           backgroundColor: Colors.blue[900],
         ),
-        SizedBox(
-          height: 15.0, //Esto es solo para dar cierto margen entre los FAB
-        ),
+        SizedBox( height: 15),
         FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add_alarm),
-          tooltip: 'Product',
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        ListaUsuarios(title: 'Proyecto Usuarios')));
+          },
+          child: Icon(Icons.account_box),
+          tooltip: 'Lista Usuarios',
           elevation: 50.0,
           backgroundColor: Colors.blue[900],
         ),
-        SizedBox(
-          height: 15.0, //Esto es solo para dar cierto margen entre los FAB
-        ),
+        SizedBox( height: 15),
         FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -120,14 +121,12 @@ class _MyHomePage extends State<MyHomePage> {
                     builder: (_) =>
                         ListaMensajeros(title: 'Proyecto Mensajeros')));
           },
-          child: Icon(Icons.list_alt),
-          tooltip: 'lista',
-          elevation: 50.0,
+          child: Icon(Icons.account_box),
+          tooltip: 'Lista Mensajeros',
+          elevation: 50,
           backgroundColor: Colors.blue[900],
         ),
-        SizedBox(
-          height: 15.0, //Esto es solo para dar cierto margen entre los FAB
-        ),
+        SizedBox( height: 15.0),
         FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
@@ -144,6 +143,15 @@ class _MyHomePage extends State<MyHomePage> {
           },
           child: Icon(Icons.add),
           tooltip: 'Agregar usuario',
+          elevation: 50.0,
+          backgroundColor: Colors.blue[900],
+        ),
+        FloatingActionButton(
+          onPressed: () {
+            
+          },
+          child: Icon(Icons.lock),
+          tooltip: 'Notificaciones',
           elevation: 50.0,
           backgroundColor: Colors.blue[900],
         ),
@@ -167,7 +175,7 @@ class _MyHomePage extends State<MyHomePage> {
                     },
                     child: Text(
                       "eliminar",
-                      style: TextStyle(color: Colors.amber),
+                      style: TextStyle(color: Colors.blue[900]),
                     )),
                 TextButton(
                   onPressed: () {
@@ -175,7 +183,7 @@ class _MyHomePage extends State<MyHomePage> {
                   },
                   child: Text(
                     "cancelar",
-                    style: TextStyle(color: Colors.amber),
+                    style: TextStyle(color: Colors.blue[900]),
                   ),
                 )
               ],
