@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/pages/my_home_page.dart';
 import 'package:flutter_application_1/pages/text_box.dart';
 import 'package:flutter_application_1/usuario/AddUser.dart';
+import 'package:flutter_application_1/usuario/listaUser.dart';
+import 'package:flutter_application_1/usuario/ApiUser.dart';
+import 'package:http/http.dart' as http;
 
 
 class Login extends StatefulWidget {
@@ -12,6 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
+  
   List<Client> clients = [
     Client(
         name: "rony",
@@ -61,7 +64,8 @@ class _Login extends State<Login> {
           height: 400.0,width: 800,
         ),
         TextBoxLogin(controllerName, "User"),
-        TextBoxPass(controllerNumero, "Password"),
+        TextBoxPass(controllerNumero, "Password"),      
+                        
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               primary: Colors.blue[900],
@@ -103,7 +107,7 @@ class _Login extends State<Login> {
             child: Text("ingresar")
           ),
           SizedBox( height: 15.0),
-          Text("OR"),
+         Text("OR"),
           SizedBox( height: 15.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -142,3 +146,5 @@ class Client {
       this.fechaNacimiento,
       this.foto});
 }
+
+

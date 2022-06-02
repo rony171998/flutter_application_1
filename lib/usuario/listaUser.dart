@@ -24,7 +24,7 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Listados usuarios'),
+        title: Text('Lista usuarios'),
         actions: [
           IconButton(
               tooltip: 'Adicionar usuario',
@@ -130,7 +130,7 @@ class Vistausuarios extends StatelessWidget {
               padding: EdgeInsets.all(5.0),
               width: 50,
               height: 50,
-              child: Text(usuarios[posicion].first_name.substring(0, 1)),
+              child: Text(usuarios[posicion].first_name.substring(0, 1).toUpperCase()),
             ),
             title: Text(usuarios[posicion].first_name +
                 " " +

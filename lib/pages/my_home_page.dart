@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/chat/Chat.dart';
 import 'package:flutter_application_1/pages/Modificar_contacto.dart';
 import 'package:flutter_application_1/pages/registrar_contacto.dart';
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
+import 'package:flutter_application_1/product/ProducHome.dart';
 import 'package:flutter_application_1/usuario/listaUser.dart';
 import 'package:flutter_application_1/pages/lista.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -111,14 +113,22 @@ class _MyHomePage extends State<MyHomePage> {
               child: Icon(Icons.refresh),
               label: "Notificaciones",
               onTap: () {
-                
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        Chat()));
               },
             ),
             SpeedDialChild(
               child: Icon(Icons.handyman),
               label: "Products",
               onTap: () {
-                
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        ProducHome()));
               },
             )
           ]),
