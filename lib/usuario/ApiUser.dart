@@ -40,16 +40,17 @@ void adicionarUsuario(
 }
 
 void editarUsuario(
-     int id,
+   int id,
    String email,
    String password,
    String first_name,
    String last_name,
    String birthday
    ) async {
-  var url = Uri.parse('https://users-crud1.herokuapp.com/users/');
+  var url = Uri.parse('https://users-crud1.herokuapp.com/users/id');
 
   await http.post(url, body: {
+    
     'email': email,
     'password': password,
     'first_name': first_name,
@@ -60,7 +61,7 @@ void editarUsuario(
 }
 
 void eliminarUsuario(id) async {
-  var url = Uri.parse('https://users-crud1.herokuapp.com/users/');
+  var url = Uri.parse('https://users-crud1.herokuapp.com/users/id');
 
   await http.post(url, body: {
     'ideliminar': id,

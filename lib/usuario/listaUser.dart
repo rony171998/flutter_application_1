@@ -1,10 +1,12 @@
-
-import './ApiUser.dart';
+import 'package:flutter_application_1/usuario/UpdateUser.dart';
+import 'dart:developer';
+import 'ApiUser.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/usuario/AddUser.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class ListaUsuarios extends StatefulWidget {
-  
   ListaUsuarios({required this.title});
   final String title;
 
@@ -22,37 +24,56 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         title: Text('Listados usuarios'),
         actions: [
           IconButton(
               tooltip: 'Adicionar usuario',
               icon: Icon(Icons.add),
-              onPressed: () {/*
+              onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            Agregarusuario())).then((value) {
+                            RegistrarUsuario())).then((value) {
                   setState(() {
                     getInfo(context);
                   });
-                });*/
+                });
               })
         ],
       ),
 
       body: getInfo(context),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            getInfo(context);
-          });
-        },
-        tooltip: 'Refrescar',
-        child: Icon(Icons.refresh),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: SpeedDial(
+          icon: Icons.menu,
+          activeIcon: Icons.close,
+          spacing: 3,
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.add),
+              label: "agregar usuario",
+              onTap: () {
+                Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => RegistrarUsuario()))
+                    .then((newContact) {
+                  if (newContact != null) {
+                    setState(() {});
+                  }
+                });
+              },
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.refresh),
+              label: "refresh",
+              onTap: () {
+                setState(() {
+                  getInfo(context);
+                });
+              },
+            )
+          ]),
+      
     );
   }
 }
@@ -98,30 +119,50 @@ class Vistausuarios extends StatelessWidget {
         itemCount: usuarios.length == 0 ? 0 : usuarios.length,
         itemBuilder: (context, posicion) {
           return ListTile(
-            onTap: () {/*
+            onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => Perfilusuario(
-                          perfil: usuarios, idperfil: posicion)));*/
+                      builder: (BuildContext context) =>
+                          UpdateUser(perfil: usuarios, idperfil: posicion)));
             },
             leading: Container(
               padding: EdgeInsets.all(5.0),
               width: 50,
               height: 50,
-              child: Image.network(usuarios[posicion].first_name),
+              child: Text(usuarios[posicion].first_name.substring(0, 1)),
             ),
-            title: Text(usuarios[posicion].first_name),
-            subtitle: Text(usuarios[posicion].last_name),
+            title: Text(usuarios[posicion].first_name +
+                " " +
+                usuarios[posicion].last_name),
+            subtitle: Text(usuarios[posicion].email),
             trailing: Container(
-              width: 80,
+              width: 120,
               height: 40,
-              color: Colors.yellowAccent,
+              color: Colors.blue[900],
               padding: EdgeInsets.all(10),
               alignment: Alignment.center,
-              child: Text(usuarios[posicion].birthday),
+              child: Text("Edad: " +
+                  ageClient(context, usuarios[posicion].birthday + " años")),
             ),
           );
         });
+  }
+
+  ageClient(contex, var dateuser) {
+    var datenow = DateTime.now().toString().substring(0, 10);
+    var age = int.parse(datenow.substring(0, 4)) -
+        int.parse(dateuser.substring(0, 4));
+    log("message $datenow ");
+    if (int.parse(datenow.substring(5, 7)) <
+        int.parse(dateuser.substring(5, 7))) {
+      age = age - 1;
+    } else if (int.parse(datenow.substring(5, 7)) ==
+        int.parse(dateuser.substring(5, 7))) {
+      if (int.parse(datenow.substring(9)) < int.parse(dateuser.substring(9))) {
+        age = age - 1;
+      }
+    }
+    return age.toString();
   }
 }

@@ -31,7 +31,7 @@ class TextBoxLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 40.0),
+      padding: EdgeInsets.symmetric(horizontal: 90.0, vertical: 20.0),
       child: TextField(
         controller: this._controller,
         decoration: InputDecoration(
@@ -40,7 +40,7 @@ class TextBoxLogin extends StatelessWidget {
             suffix: GestureDetector(
               child: Icon(
                 Icons.person,
-                color: Colors.amber,
+                color: Colors.blue[900],
               ),
               onTap: () {
                 _controller.clear();
@@ -58,7 +58,7 @@ class TextBoxPass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 40.0),
+      padding: EdgeInsets.symmetric(horizontal: 90.0, vertical: 20.0),
       child: TextField(
         obscureText: true,
         controller: this._controller,
@@ -69,7 +69,7 @@ class TextBoxPass extends StatelessWidget {
             suffix: GestureDetector(
               child: Icon(
                 Icons.lock,
-                color: Colors.amber,
+                color: Colors.blue[900],
               ),
               onTap: () {
                 _controller.clear();

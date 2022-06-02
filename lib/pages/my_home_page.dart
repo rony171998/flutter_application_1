@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/Modificar_contacto.dart';
 import 'package:flutter_application_1/pages/registrar_contacto.dart';
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
-import 'package:flutter_application_1/pages/listaUser.dart';
+import 'package:flutter_application_1/usuario/listaUser.dart';
 import 'package:flutter_application_1/pages/lista.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class MyHomePage extends StatefulWidget {
   final String _title;
@@ -89,73 +90,38 @@ class _MyHomePage extends State<MyHomePage> {
           );
         },
       ),
-      floatingActionButton: Column(children: <Widget>[
-        SizedBox( height: 295 ),
-        FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.handyman_rounded),
-          tooltip: 'Productos',
-          elevation: 50.0,
-          backgroundColor: Colors.blue[900],
-        ),
-        SizedBox( height: 15),
-        FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
+
+      floatingActionButton: SpeedDial(
+          icon: Icons.menu,
+          activeIcon: Icons.close,
+          spacing: 3,
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.account_circle_sharp),
+              label: "Users",
+              onTap: () {
+                Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (_) =>
                         ListaUsuarios(title: 'Proyecto Usuarios')));
-          },
-          child: Icon(Icons.account_box),
-          tooltip: 'Lista Usuarios',
-          elevation: 50.0,
-          backgroundColor: Colors.blue[900],
-        ),
-        SizedBox( height: 15),
-        FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) =>
-                        ListaMensajeros(title: 'Proyecto Mensajeros')));
-          },
-          child: Icon(Icons.account_box),
-          tooltip: 'Lista Mensajeros',
-          elevation: 50,
-          backgroundColor: Colors.blue[900],
-        ),
-        SizedBox( height: 15.0),
-        FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => RegistrarContacto()))
-                .then((newContact) {
-              if (newContact != null) {
-                setState(() {
-                  clients.add(newContact);
-                  mensajeResponsive(
-                      context, newContact.name + " se ha registrado");
-                });
-              }
-            });
-          },
-          child: Icon(Icons.add),
-          tooltip: 'Agregar usuario',
-          elevation: 50.0,
-          backgroundColor: Colors.blue[900],
-        ),
-        FloatingActionButton(
-          onPressed: () {
-            
-          },
-          child: Icon(Icons.lock),
-          tooltip: 'Notificaciones',
-          elevation: 50.0,
-          backgroundColor: Colors.blue[900],
-        ),
-      ]),
+              },
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.refresh),
+              label: "Notificaciones",
+              onTap: () {
+                
+              },
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.handyman),
+              label: "Products",
+              onTap: () {
+                
+              },
+            )
+          ]),
     );
   }
 
