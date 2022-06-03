@@ -110,8 +110,8 @@ class _MyHomePage extends State<MyHomePage> {
               },
             ),
             SpeedDialChild(
-              child: Icon(Icons.refresh),
-              label: "Notificaciones",
+              child: Icon(Icons.chat),
+              label: "Chat",
               onTap: () {
                 Navigator.push(
                 context,
