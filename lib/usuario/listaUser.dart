@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
 import 'package:flutter_application_1/usuario/UpdateUser.dart';
 import 'dart:developer';
 import 'ApiUser.dart';
@@ -59,8 +60,10 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
                     .then((newContact) {
                   if (newContact != null) {
                     setState(() {});
+                    mensajeResponsive(context, "se guardo "+newContact);
                   }
                 });
+                
               },
             ),
             SpeedDialChild(
