@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
 
 class Chat extends StatefulWidget {
   State<StatefulWidget> createState() => _Chat();
@@ -39,14 +40,14 @@ class _Chat extends State<Chat> {
     )
   ];
   List<ChatMessage> messages = [
-    ChatMessage(messageContent: "hola pedro", messageType: "receiver"),
-    ChatMessage(messageContent: "como te va?", messageType: "receiver"),
+    ChatMessage(messageContent: "hola pedro", messageType: "recibido"),
+    ChatMessage(messageContent: "como te va?", messageType: "recibido"),
     ChatMessage(
         messageContent: "hola rony, cuanto vale esa llanta?",
         messageType: "sender"),
-    ChatMessage(messageContent: "la de tamaño 22?", messageType: "receiver"),
+    ChatMessage(messageContent: "la de tamaño 22?", messageType: "recibido"),
     ChatMessage(
-        messageContent: "si esa", messageType: "sender"),
+        messageContent: "si esa", messageType: "enviado"),
   ];
 
   @override
@@ -129,6 +130,7 @@ class _Chat extends State<Chat> {
                   ),
                   Expanded(
                     child: TextField(
+                      controller: controllerText,
                       decoration: InputDecoration(
                           hintText: "escribe su mensaje...",
                           hintStyle: TextStyle(color: Colors.black54),
@@ -140,15 +142,16 @@ class _Chat extends State<Chat> {
                   ),
                   FloatingActionButton(
                     onPressed: () {
-                      /*
-                      onSubmited:(text){
-                        
-                        final message=Message(
-                        messageContent: text,
-                        messageType: "enviado",
-                        );
-                        setState(() =>messages.add(message));
-                      }*/
+                      
+                      new ChatMessage(
+                      messageContent: "controllerText",
+                      messageType: "enviado",
+                      );
+                      setState(() {
+                        //messages.add(messages);
+                        }
+                      ); 
+                      mensajeResponsive(context, messages.toString());
 
                     },
                     child: Icon(
