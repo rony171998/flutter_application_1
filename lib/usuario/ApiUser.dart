@@ -47,7 +47,7 @@ void editarUsuario(
    String last_name,
    String birthday
    ) async {
-  var url = Uri.parse('https://users-crud1.herokuapp.com/users/id');
+  var url = Uri.parse('https://users-crud1.herokuapp.com/users/$id');
 
   await http.post(url, body: {
     
@@ -61,7 +61,7 @@ void editarUsuario(
 }
 
 void eliminarUsuario(id) async {
-  var url = Uri.parse('https://users-crud1.herokuapp.com/users/id');
+  var url = Uri.parse('https://users-crud1.herokuapp.com/users/$id');
 
   await http.post(url, body: {
     'ideliminar': id,
