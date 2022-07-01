@@ -14,7 +14,8 @@ class _RegistrarUsuario extends State<RegistrarUsuario> {
   late TextEditingController controllerPassword;
   late TextEditingController controllerFirts_name;
   late TextEditingController controllerLast_name;
-  late TextEditingController controllerBIrthday;
+  late TextEditingController controllerAge;
+  late TextEditingController controllerPhoto;
  
   
 
@@ -25,7 +26,8 @@ class _RegistrarUsuario extends State<RegistrarUsuario> {
     controllerPassword = new TextEditingController();
     controllerFirts_name = new TextEditingController();
     controllerLast_name = new TextEditingController();
-    controllerBIrthday = new TextEditingController();
+    controllerAge = new TextEditingController();
+    controllerPhoto = new TextEditingController();
     super.initState();
   }
 
@@ -41,7 +43,8 @@ class _RegistrarUsuario extends State<RegistrarUsuario> {
         TextBox(controllerPassword, "Password"),
         TextBox(controllerFirts_name, "Firts name"),
         TextBox(controllerLast_name, "Last name"),
-        TextBox(controllerBIrthday, "birthday  AAAA-MM-DD"),
+        TextBox(controllerAge, "birthday  AAAA-MM-DD"),
+        TextBox(controllerPhoto, "Photo"),
 
         ElevatedButton(
             onPressed: () {
@@ -50,14 +53,17 @@ class _RegistrarUsuario extends State<RegistrarUsuario> {
               String password=controllerPassword.text;
               String first_name=controllerFirts_name.text;
               String last_name=controllerFirts_name.text;
-              String birthday=controllerBIrthday.text;
+              String age=controllerAge.text;
+              String photo=controllerPhoto.text;
 
               if (
                 email.isNotEmpty &&
                 password.isNotEmpty &&
                 first_name.isNotEmpty &&
                 last_name.isNotEmpty &&
-                birthday.isNotEmpty 
+                age.isNotEmpty &&
+                photo.isNotEmpty
+
                 ) {
 
                   adicionarUsuario(
@@ -65,7 +71,8 @@ class _RegistrarUsuario extends State<RegistrarUsuario> {
                       controllerPassword.text,
                       controllerFirts_name.text,
                       controllerLast_name.text,
-                      controllerBIrthday.text,
+                      controllerAge.text,
+                      controllerPhoto.text
                       );
                   
                   Navigator.of(context).pop();

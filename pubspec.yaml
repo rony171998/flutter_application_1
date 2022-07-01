@@ -33,6 +33,10 @@ dependencies:
   flutter_speed_dial: ^6.0.0
   grouped_list: ^5.1.1
   intl: ^0.17.0
+  google_sign_in: ^5.3.3
+  firebase_auth: ^3.3.20
+  flutter_signin_button: ^2.0.0
+  get: ^4.6.5
   #stream_chat_flutter: ^4.0.0
 
 dev_dependencies:

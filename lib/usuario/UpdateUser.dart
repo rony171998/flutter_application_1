@@ -15,16 +15,18 @@ class _UpdateUser extends State<UpdateUser> {
   late TextEditingController controllerPassword = TextEditingController();
   late TextEditingController controllerFirts_name = TextEditingController();
   late TextEditingController controllerLast_name = TextEditingController();
-  late TextEditingController controllerBIrthday = TextEditingController() ;
+  late TextEditingController controllerAge = TextEditingController() ;
+  late TextEditingController controllerPhoto = TextEditingController();
 
   @override
   void initState() {
     
-    controllerEmail = TextEditingController(text: widget.perfil[widget.idperfil].email);;
+    controllerEmail = TextEditingController(text: widget.perfil[widget.idperfil].email);
     controllerPassword = TextEditingController(text: widget.perfil[widget.idperfil].password);;
     controllerFirts_name = TextEditingController(text: widget.perfil[widget.idperfil].first_name);;
     controllerLast_name = TextEditingController(text: widget.perfil[widget.idperfil].last_name);;
-    controllerBIrthday = TextEditingController(text: widget.perfil[widget.idperfil].birthday);
+    controllerAge = TextEditingController(text: widget.perfil[widget.idperfil].age);
+    controllerPhoto = TextEditingController(text: widget.perfil[widget.idperfil].photo);
 
     super.initState();
   }
@@ -41,7 +43,8 @@ class _UpdateUser extends State<UpdateUser> {
         TextBox(controllerPassword, "Password"),
         TextBox(controllerFirts_name, "Firts name"),
         TextBox(controllerLast_name, "Last name"),
-        TextBox(controllerBIrthday, "birthday  AAAA-MM-DD"),
+        TextBox(controllerAge, "birthday  AAAA-MM-DD"),
+        TextBox(controllerPhoto, "Photo"),
           ElevatedButton(
             onPressed: () {
 
@@ -49,14 +52,17 @@ class _UpdateUser extends State<UpdateUser> {
               String password=controllerPassword.text;
               String first_name=controllerFirts_name.text;
               String last_name=controllerFirts_name.text;
-              String birthday=controllerBIrthday.text;
+              String age=controllerAge.text;
+              String photo=controllerPhoto.text;
 
               if (
                 email.isNotEmpty &&
                 password.isNotEmpty &&
                 first_name.isNotEmpty &&
                 last_name.isNotEmpty &&
-                birthday.isNotEmpty 
+                age.isNotEmpty &&
+                photo.isNotEmpty
+
                 ) {
 
                   editarUsuario( 
@@ -65,7 +71,9 @@ class _UpdateUser extends State<UpdateUser> {
                       controllerPassword.text,
                       controllerFirts_name.text,
                       controllerLast_name.text,
-                      controllerBIrthday.text,
+                      controllerAge.text,
+                      controllerPhoto.text
+                      
                       );
                   
                   Navigator.pop(context);

@@ -1,21 +1,21 @@
 import 'package:flutter_application_1/pages/Mensaje_responsive.dart';
-import 'package:flutter_application_1/usuario/UpdateUser.dart';
+//import 'package:flutter_application_1/product/UpdateUser.dart';
 import 'dart:developer';
-import 'ApiUser.dart';
+import 'ApiProducts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/usuario/AddUser.dart';
+//import 'package:flutter_application_1/product/AddUser.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-class ListaUsuarios extends StatefulWidget {
-  ListaUsuarios({required this.title});
+class ListaProducts extends StatefulWidget {
+  ListaProducts({required this.title});
   final String title;
 
   @override
-  _ListaUsuariosState createState() => _ListaUsuariosState();
+  _ListaProductsState createState() => _ListaProductsState();
 }
 
-class _ListaUsuariosState extends State<ListaUsuarios> {
+class _ListaProductsState extends State<ListaProducts> {
   @override
   void initState() {
     super.initState();
@@ -25,21 +25,13 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista usuarios'),
+        title: Text('Lista products'),
         actions: [
           IconButton(
-              tooltip: 'Adicionar usuario',
+              tooltip: 'Adicionar product',
               icon: Icon(Icons.add),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            RegistrarUsuario())).then((value) {
-                  setState(() {
-                    getInfo(context);
-                  });
-                });
+                
               })
         ],
       ),
@@ -53,16 +45,9 @@ class _ListaUsuariosState extends State<ListaUsuarios> {
           children: [
             SpeedDialChild(
               child: Icon(Icons.add),
-              label: "agregar usuario",
+              label: "agregar product",
               onTap: () {
-                Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => RegistrarUsuario()))
-                    .then((newContact) {
-                  if (newContact != null) {
-                    setState(() {});
-                    mensajeResponsive(context, "se guardo "+newContact);
-                  }
-                });
+                
                 
               },
             ),
@@ -96,7 +81,7 @@ Widget getInfo(BuildContext context) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
           // print(snapshot.data);
           return snapshot.data != null
-              ? Vistausuarios(usuarios: snapshot.data)
+              ? Vistaproducts(products: snapshot.data)
               : Text('Sin Datos');
 
         /*
@@ -112,60 +97,40 @@ Widget getInfo(BuildContext context) {
   );
 }
 
-class Vistausuarios extends StatelessWidget {
-  final List<Usuario> usuarios;
-  const Vistausuarios({required this.usuarios});
+class Vistaproducts extends StatelessWidget {
+  final List<Product> products;
+  const Vistaproducts({required this.products});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: usuarios.length == 0 ? 0 : usuarios.length,
+        itemCount: products.length == 0 ? 0 : products.length,
         itemBuilder: (context, posicion) {
           return ListTile(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          UpdateUser(perfil: usuarios, idperfil: posicion)));
+              
             },
             leading: Container(
               padding: EdgeInsets.all(5.0),
               width: 50,
               height: 50,
-              child: Text(usuarios[posicion].first_name.substring(0, 1).toUpperCase()),
+              child: Text(products[posicion].title.substring(0, 1).toUpperCase()),
             ),
-            title: Text(usuarios[posicion].first_name +
+            title: Text(products[posicion].title +
                 " " +
-                usuarios[posicion].last_name),
-            subtitle: Text(usuarios[posicion].email),
+                products[posicion].description),
+            subtitle: Text(products[posicion].price.toString()),
             trailing: Container(
               width: 120,
               height: 40,
               color: Colors.blue[900],
               padding: EdgeInsets.all(10),
               alignment: Alignment.center,
-              child: Text("Edad: " +
-                  ageClient(context, usuarios[posicion].age + " años")),
-            ),
+              child: Text("Edad: años")),
+            
           );
         });
   }
 
-  ageClient(contex, var dateuser) {
-    var datenow = DateTime.now().toString().substring(0, 10);
-    var age = int.parse(datenow.substring(0, 4)) -
-        int.parse(dateuser.substring(0, 4));
-    log("message $datenow ");
-    if (int.parse(datenow.substring(5, 7)) <
-        int.parse(dateuser.substring(5, 7))) {
-      age = age - 1;
-    } else if (int.parse(datenow.substring(5, 7)) ==
-        int.parse(dateuser.substring(5, 7))) {
-      if (int.parse(datenow.substring(9)) < int.parse(dateuser.substring(9))) {
-        age = age - 1;
-      }
-    }
-    return age.toString();
-  }
+  
 }
